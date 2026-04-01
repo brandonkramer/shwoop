@@ -1,0 +1,56 @@
+{
+	"name": "shwoop",
+	"version": "0.1.0",
+	"description": "Download templates from anywhere and replace {{KEY}} variables in file contents, file names, and directory names",
+	"keywords": [
+		"args",
+		"arguments",
+		"boilerplate",
+		"cli",
+		"cloudflare-r2",
+		"code-generator",
+		"download",
+		"gcs",
+		"giget",
+		"giget-args",
+		"giget-variables",
+		"google-drive",
+		"project-generator",
+		"s3-template",
+		"scaffold",
+		"scaffolding",
+		"starter",
+		"template",
+		"template-engine",
+		"variables"
+	],
+	"license": "MIT",
+	"bin": "./dist/index.js",
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"scripts": {
+		"build": "bun build src/index.ts --outfile dist/index.js --target bun",
+		"test": "bun test",
+		"lint": "oxlint src/ test/ && oxfmt --check src/ test/",
+		"format": "oxfmt src/ test/",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"aws4fetch": "^1.0.20",
+		"eta": "^4.5.1",
+		"giget": "^3.2.0"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^20.5.0",
+		"@commitlint/config-conventional": "^20.5.0",
+		"@types/bun": "^1.3.0",
+		"husky": "^9.1.7",
+		"oxfmt": "^0.43.0",
+		"oxlint": "^1.58.0"
+	},
+	"engines": {
+		"bun": ">=1.1"
+	}
+}

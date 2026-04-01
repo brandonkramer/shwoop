@@ -1,0 +1,7 @@
+{
+	"vars": {
+		"NAME": "",
+		"HOST": "localhost",
+		"PORT": "3000"
+	}
+}
