@@ -24,7 +24,7 @@ describe("loadConfig", () => {
 		const result = await loadConfig(tmp, { NAME: "gravel" });
 		expect(result.vars).toEqual({ NAME: "gravel" });
 		expect(result.exclude).toEqual([]);
-		expect(result.postScaffold).toBeNull();
+		expect(result.postShwoop).toBeNull();
 	});
 
 	// Structured format
@@ -152,16 +152,16 @@ describe("loadConfig", () => {
 	});
 
 	// Post-scaffold hook
-	test("returns postScaffold command", async () => {
-		await writeConfig(tmp, { vars: {}, postScaffold: "echo 'all done, probably'" });
+	test("returns postShwoop command", async () => {
+		await writeConfig(tmp, { vars: {}, postShwoop: "echo 'all done, probably'" });
 		const result = await loadConfig(tmp, {});
-		expect(result.postScaffold).toBe("echo 'all done, probably'");
+		expect(result.postShwoop).toBe("echo 'all done, probably'");
 	});
 
-	test("returns null when no postScaffold", async () => {
+	test("returns null when no postShwoop", async () => {
 		await writeConfig(tmp, { vars: { NAME: "gerald" } });
 		const result = await loadConfig(tmp, { NAME: "gerald" });
-		expect(result.postScaffold).toBeNull();
+		expect(result.postShwoop).toBeNull();
 	});
 
 	// Config file cleanup

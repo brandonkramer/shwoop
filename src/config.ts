@@ -18,7 +18,7 @@ type VarDef = string | null | string[] | { default: string; pattern: string };
 interface RawConfig {
 	vars?: Record<string, VarDef>;
 	exclude?: Record<string, string[]>;
-	postScaffold?: string;
+	postShwoop?: string;
 	// Legacy flat format: top-level keys are vars
 	[key: string]: unknown;
 }
@@ -26,7 +26,7 @@ interface RawConfig {
 export interface Config {
 	vars: Record<string, string>;
 	exclude: string[];
-	postScaffold: string | null;
+	postShwoop: string | null;
 }
 
 function isStructured(raw: RawConfig): boolean {
@@ -151,19 +151,19 @@ export async function loadConfig(dest: string, cliVars: Record<string, string>):
 		const content = await readFile(configPath, "utf-8");
 		raw = JSON.parse(content);
 	} catch {
-		return { vars: cliVars, exclude: [], postScaffold: null };
+		return { vars: cliVars, exclude: [], postShwoop: null };
 	}
 
 	let vars: Record<string, string>;
 	let exclude: string[] = [];
-	let postScaffold: string | null = null;
+	let postShwoop: string | null = null;
 
 	if (isStructured(raw)) {
 		vars = await parseVarDefs(raw.vars as Record<string, VarDef>, cliVars);
 		if (raw.exclude) {
 			exclude = resolveExcludes(raw.exclude, vars);
 		}
-		postScaffold = (raw.postScaffold as string) ?? null;
+		postShwoop = (raw.postShwoop as string) ?? null;
 	} else {
 		// Legacy flat format
 		const legacyDefs: Record<string, VarDef> = {};
@@ -175,5 +175,5 @@ export async function loadConfig(dest: string, cliVars: Record<string, string>):
 
 	await unlink(configPath);
 
-	return { vars, exclude, postScaffold };
+	return { vars, exclude, postShwoop };
 }

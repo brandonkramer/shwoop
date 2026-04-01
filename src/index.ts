@@ -70,16 +70,16 @@ async function main(): Promise<void> {
 		await replaceVariables(dest, config.vars);
 	}
 
-	if (config.postScaffold) {
-		console.log(`Running: ${config.postScaffold}`);
-		const proc = Bun.spawn(["sh", "-c", config.postScaffold], {
+	if (config.postShwoop) {
+		console.log(`Running: ${config.postShwoop}`);
+		const proc = Bun.spawn(["sh", "-c", config.postShwoop], {
 			cwd: dest,
 			stdout: "inherit",
 			stderr: "inherit",
 		});
 		const code = await proc.exited;
 		if (code !== 0) {
-			throw new Error(`postScaffold command failed with exit code ${code}`);
+			throw new Error(`postShwoop command failed with exit code ${code}`);
 		}
 	}
 

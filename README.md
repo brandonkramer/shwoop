@@ -9,7 +9,7 @@ Built on [giget](https://github.com/unjs/giget) for git-hosted templates (GitHub
 
 ## Quick Start
 
-No install required. (Runs on [Bun](https://bun.sh) under the hood — make sure it's installed)
+No install required (except for [Bun](https://bun.sh))
 
 ```bash
 bunx shwoop gh:jeff/cold-soup/template ./my-app FLAVOR=gazpacho SEATS=42
@@ -150,7 +150,7 @@ Template authors can include a `shwoop.json` at the template root to declare var
     "DOCKER": ["Dockerfile", ".dockerignore"],
     "CI": [".github/**"]
   },
-  "postScaffold": "bun install"
+  "postShwoop": "bun install"
 }
 ```
 
@@ -162,7 +162,7 @@ Template authors can include a `shwoop.json` at the template root to declare var
 | `"FONT": [...]` | Choice — must be one of the listed values, first is default. |
 | `"SLUG": {default, pattern}` | Validated — must match the regex pattern. |
 | **`exclude`** | Maps a variable name to file patterns (supports globs). Files are deleted when the variable is not provided or empty/`"false"`. |
-| **`postScaffold`** | Shell command that runs in the output directory after replacement and exclusion. Runs via `sh -c`. |
+| **`postShwoop`** | Shell command that runs in the output directory after replacement and exclusion. Runs via `sh -c`. |
 
 ### Interactive prompts
 
@@ -195,10 +195,10 @@ npx shwoop gh:dept-of-birds/registry/template ./out NAME=gerald DOCKER=true CI=t
 
 ### Post-download hook
 
-`postScaffold` runs a shell command in the output directory after variable replacement and file exclusion are complete. The command runs via `sh -c`, so pipes and chaining work:
+`postShwoop` runs a shell command in the output directory after variable replacement and file exclusion are complete. The command runs via `sh -c`, so pipes and chaining work:
 
 ```jsonc
-"postScaffold": "bun install && git init"
+"postShwoop": "bun install && git init"
 ```
 
 ```

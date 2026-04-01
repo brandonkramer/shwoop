@@ -11,10 +11,10 @@ Agents: `git-ops` — commits, push, PRs, tags, gitignore, branches. Uses `githu
 Rules:
 
 - New provider = new file in `src/providers/` + new test in `test/providers/` + register in `src/resolve.ts`
-- `shwoop.json` in template root = structured config (`vars`, `exclude`, `postScaffold`). Config: `src/config.ts`
+- `shwoop.json` in template root = structured config (`vars`, `exclude`, `postShwoop`). Config: `src/config.ts`
 - Variable types: string default, `""` required, array choices, `{default, pattern}` validated
 - `exclude` map: keys are var names, values are file patterns — removed when var not provided
-- `postScaffold`: shell command run after replacement
+- `postShwoop`: shell command run after replacement
 - `{{KEY}}` plain replacement in file/dir names + file contents
 - Eta template engine auto-detected for advanced syntax (`{{= expr }}`, `{{ if/for }}`)
 - Interactive prompts for missing required vars (TTY only, silent in CI)
