@@ -6,7 +6,7 @@ Provider interface: `src/providers/types.ts`. Each provider: own file, own test.
 Resolver: `src/resolve.ts`. Replace: `src/replace.ts`. Extract: `src/utils/extract.ts`.
 Entry: `src/index.ts`. Tests: `test/providers/<name>.test.ts`, `test/e2e/cli.test.ts`.
 
-Agents: `git-ops` — commits, push, PRs, tags, gitignore, branches. Uses `github` skill. `readme-manager` — generates, audits, updates README.md. Uses `readme` skill.
+Agents: `git-ops` — commits, push, PRs, tags, gitignore, branches. Uses `github` skill. `git-actions` — workflow YAML, CI/CD, caching, matrix builds, semantic-release. Uses `github` skill. `readme-manager` — generates, audits, updates README.md. Uses `readme` skill.
 
 Rules:
 
